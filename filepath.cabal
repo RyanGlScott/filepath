@@ -192,7 +192,7 @@ benchmark bench-filepath
   ghc-options:      -Wall
   type:             exitcode-stdio-1.0
   main-is:          BenchFilePath.hs
-  hs-source-dirs:   bench
+  hs-source-dirs:   filepath-benchmarks/bench
   build-depends:
     , base
     , bytestring  >=0.11.3.0
