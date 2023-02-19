@@ -1,0 +1,53 @@
+cabal-version:      2.2
+name:               filepath-benchmarks
+version:            0.1
+
+-- NOTE: Don't forget to update ./changelog.md
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             Neil Mitchell <ndmitchell@gmail.com>
+maintainer:         Julian Ospald <hasufell@posteo.de>
+copyright:          Neil Mitchell 2005-2020, Julain Ospald 2021-2022
+bug-reports:        https://github.com/haskell/filepath/issues
+homepage:
+  https://github.com/haskell/filepath/blob/master/README.md
+
+category:           System
+build-type:         Simple
+synopsis:           filepath benchmarks
+tested-with:
+  GHC ==8.0.2
+   || ==8.2.2
+   || ==8.4.4
+   || ==8.6.5
+   || ==8.8.4
+   || ==8.10.7
+   || ==9.0.2
+   || ==9.2.3
+
+description:
+  A benchmark suite for @filepath@.
+
+source-repository head
+  type:     git
+  location: https://github.com/haskell/filepath
+  subdir:   filepath-benchmarks
+
+benchmark bench-filepath
+  default-language: Haskell2010
+  ghc-options:      -Wall
+  type:             exitcode-stdio-1.0
+  main-is:          BenchFilePath.hs
+  hs-source-dirs:   bench
+  build-depends:
+    , base
+    , bytestring  >=0.11.3.0
+    , deepseq
+    , filepath
+    , tasty-bench
+
+  if impl(ghc >=8.10)
+    ghc-options: "-with-rtsopts=-A32m --nonmoving-gc"
+
+  else
+    ghc-options: -with-rtsopts=-A32m
